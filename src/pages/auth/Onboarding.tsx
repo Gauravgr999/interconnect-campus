@@ -78,6 +78,7 @@ const Onboarding = () => {
     setSaving(true);
     const data: any = { ...parsed.data, onboarding_completed: true };
     if (data.college_email === "") delete data.college_email;
+    if (data.graduation_date === "" || data.graduation_date === undefined) data.graduation_date = null;
     const { error } = await supabase.from("profiles").update(data).eq("id", user!.id);
     setSaving(false);
     if (error) { toast.error(error.message); return; }
