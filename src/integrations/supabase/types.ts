@@ -14,16 +14,110 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          account_type: Database["public"]["Enums"]["account_type"]
+          avatar_url: string | null
+          bio: string | null
+          college_email: string | null
+          college_name: string | null
+          company: string | null
+          created_at: string
+          current_position: string | null
+          degree: string | null
+          department: string | null
+          full_name: string
+          graduation_year: number | null
+          headline: string | null
+          id: string
+          is_verified: boolean
+          location: string | null
+          onboarding_completed: boolean
+          student_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          account_type?: Database["public"]["Enums"]["account_type"]
+          avatar_url?: string | null
+          bio?: string | null
+          college_email?: string | null
+          college_name?: string | null
+          company?: string | null
+          created_at?: string
+          current_position?: string | null
+          degree?: string | null
+          department?: string | null
+          full_name: string
+          graduation_year?: number | null
+          headline?: string | null
+          id: string
+          is_verified?: boolean
+          location?: string | null
+          onboarding_completed?: boolean
+          student_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          account_type?: Database["public"]["Enums"]["account_type"]
+          avatar_url?: string | null
+          bio?: string | null
+          college_email?: string | null
+          college_name?: string | null
+          company?: string | null
+          created_at?: string
+          current_position?: string | null
+          degree?: string | null
+          department?: string | null
+          full_name?: string
+          graduation_year?: number | null
+          headline?: string | null
+          id?: string
+          is_verified?: boolean
+          location?: string | null
+          onboarding_completed?: boolean
+          student_id?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      transition_graduates_to_alumni: { Args: never; Returns: undefined }
     }
     Enums: {
-      [_ in never]: never
+      account_type: "personal" | "college_student" | "alumni"
+      app_role: "admin" | "moderator" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +244,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      account_type: ["personal", "college_student", "alumni"],
+      app_role: ["admin", "moderator", "user"],
+    },
   },
 } as const
