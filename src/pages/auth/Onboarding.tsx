@@ -18,6 +18,7 @@ const collegeSchema = z.object({
   department: z.string().trim().min(2, "Department required").max(100),
   degree: z.string().trim().min(2, "Degree required").max(100),
   graduation_year: z.coerce.number().int().min(2000).max(2100),
+  graduation_date: z.string().optional().or(z.literal("")),
   student_id: z.string().trim().max(50).optional(),
   bio: z.string().trim().max(500).optional(),
 });
@@ -49,6 +50,7 @@ const Onboarding = () => {
         department: profile.department || "",
         degree: profile.degree || "",
         graduation_year: profile.graduation_year?.toString() || "",
+        graduation_date: profile.graduation_date || "",
         student_id: profile.student_id || "",
         current_position: profile.current_position || "",
         company: profile.company || "",
