@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { GraduationCap, Menu } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const links = [
   { label: "Features", href: "#features" },
@@ -26,8 +27,8 @@ export const Navbar = () => {
           ))}
         </div>
         <div className="hidden md:flex items-center gap-2">
-          <Button variant="ghost" size="sm">Sign in</Button>
-          <Button variant="hero" size="sm">Get started</Button>
+          <Button variant="ghost" size="sm" asChild><Link to="/auth?mode=signin">Sign in</Link></Button>
+          <Button variant="hero" size="sm" asChild><Link to="/auth">Get started</Link></Button>
         </div>
         <button className="md:hidden text-foreground" onClick={() => setOpen(!open)} aria-label="Menu">
           <Menu className="size-5" />
@@ -36,7 +37,7 @@ export const Navbar = () => {
       {open && (
         <div className="md:hidden glass max-w-6xl mx-auto mt-2 rounded-2xl p-4 flex flex-col gap-3 animate-fade-in">
           {links.map(l => <a key={l.href} href={l.href} className="text-sm text-muted-foreground" onClick={() => setOpen(false)}>{l.label}</a>)}
-          <Button variant="hero" size="sm" className="mt-1">Get started</Button>
+          <Button variant="hero" size="sm" className="mt-1" asChild><Link to="/auth">Get started</Link></Button>
         </div>
       )}
     </header>

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Users, Zap } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 
 export const Hero = () => {
@@ -26,11 +27,13 @@ export const Hero = () => {
           collaborate on startups, and grow your career — all in one professional platform.
         </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3 animate-fade-up" style={{ animationDelay: "0.3s" }}>
-          <Button variant="hero" size="xl" className="group">
-            Join the network
-            <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+          <Button variant="hero" size="xl" className="group" asChild>
+            <Link to="/auth">
+              Join the network
+              <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </Button>
-          <Button variant="glass" size="xl">Explore platform</Button>
+          <Button variant="glass" size="xl" asChild><Link to="/auth?mode=signin">Sign in</Link></Button>
         </div>
 
         <div className="mt-20 grid grid-cols-3 gap-3 md:gap-6 max-w-3xl mx-auto animate-fade-up" style={{ animationDelay: "0.45s" }}>
