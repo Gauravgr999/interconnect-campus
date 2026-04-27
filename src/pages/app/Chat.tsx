@@ -47,10 +47,11 @@ const Chat = () => {
 
     setRooms((rs ?? []).map((r) => {
       const memberIds = byRoom.get(r.id) ?? [];
-      let display = r.name ?? "Group chat";
+      let display: string = r.name ?? "Group chat";
       if (r.type === "dm") {
         const otherId = memberIds.find((m) => m !== user.id);
-        display = (otherId && profMap.get(otherId)) || "Direct message";
+        const name = otherId ? (profMap.get(otherId) as string | undefined) : undefined;
+        display = name ?? "Direct message";
       }
       return { ...r, display_name: display, member_count: memberIds.length } as Room;
     }));
