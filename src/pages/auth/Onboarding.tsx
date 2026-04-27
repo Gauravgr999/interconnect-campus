@@ -138,6 +138,9 @@ const Onboarding = () => {
                   <Input value={form.student_id || ""} onChange={e => update("student_id", e.target.value)} />
                 </Field>
               </div>
+              <Field label="Exact graduation date" hint="Optional · auto-switches you to alumni on this date">
+                <Input type="date" value={form.graduation_date || ""} onChange={e => update("graduation_date", e.target.value)} />
+              </Field>
             </>
           ) : (
             <>
