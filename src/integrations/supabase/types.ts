@@ -27,6 +27,7 @@ export type Database = {
           degree: string | null
           department: string | null
           full_name: string
+          graduation_date: string | null
           graduation_year: number | null
           headline: string | null
           id: string
@@ -48,6 +49,7 @@ export type Database = {
           degree?: string | null
           department?: string | null
           full_name: string
+          graduation_date?: string | null
           graduation_year?: number | null
           headline?: string | null
           id: string
@@ -69,6 +71,7 @@ export type Database = {
           degree?: string | null
           department?: string | null
           full_name?: string
+          graduation_date?: string | null
           graduation_year?: number | null
           headline?: string | null
           id?: string
@@ -113,7 +116,12 @@ export type Database = {
         }
         Returns: boolean
       }
-      transition_graduates_to_alumni: { Args: never; Returns: undefined }
+      transition_graduates_to_alumni: {
+        Args: never
+        Returns: {
+          transitioned_count: number
+        }[]
+      }
     }
     Enums: {
       account_type: "personal" | "college_student" | "alumni"
