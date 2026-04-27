@@ -14,6 +14,257 @@ export type Database = {
   }
   public: {
     Tables: {
+      chat_rooms: {
+        Row: {
+          created_at: string
+          created_by: string
+          id: string
+          last_message_at: string
+          name: string | null
+          type: Database["public"]["Enums"]["room_type"]
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          id?: string
+          last_message_at?: string
+          name?: string | null
+          type?: Database["public"]["Enums"]["room_type"]
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          id?: string
+          last_message_at?: string
+          name?: string | null
+          type?: Database["public"]["Enums"]["room_type"]
+        }
+        Relationships: []
+      }
+      connections: {
+        Row: {
+          addressee_id: string
+          created_at: string
+          id: string
+          requester_id: string
+          status: Database["public"]["Enums"]["connection_status"]
+          updated_at: string
+        }
+        Insert: {
+          addressee_id: string
+          created_at?: string
+          id?: string
+          requester_id: string
+          status?: Database["public"]["Enums"]["connection_status"]
+          updated_at?: string
+        }
+        Update: {
+          addressee_id?: string
+          created_at?: string
+          id?: string
+          requester_id?: string
+          status?: Database["public"]["Enums"]["connection_status"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      event_rsvps: {
+        Row: {
+          created_at: string
+          event_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          event_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          event_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_rsvps_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      events: {
+        Row: {
+          category: Database["public"]["Enums"]["event_category"]
+          college: string | null
+          cover_url: string | null
+          created_at: string
+          description: string | null
+          ends_at: string | null
+          id: string
+          is_online: boolean
+          location: string | null
+          organizer_id: string
+          starts_at: string
+          title: string
+          updated_at: string
+          url: string | null
+        }
+        Insert: {
+          category?: Database["public"]["Enums"]["event_category"]
+          college?: string | null
+          cover_url?: string | null
+          created_at?: string
+          description?: string | null
+          ends_at?: string | null
+          id?: string
+          is_online?: boolean
+          location?: string | null
+          organizer_id: string
+          starts_at: string
+          title: string
+          updated_at?: string
+          url?: string | null
+        }
+        Update: {
+          category?: Database["public"]["Enums"]["event_category"]
+          college?: string | null
+          cover_url?: string | null
+          created_at?: string
+          description?: string | null
+          ends_at?: string | null
+          id?: string
+          is_online?: boolean
+          location?: string | null
+          organizer_id?: string
+          starts_at?: string
+          title?: string
+          updated_at?: string
+          url?: string | null
+        }
+        Relationships: []
+      }
+      messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          room_id: string
+          sender_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          room_id: string
+          sender_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          room_id?: string
+          sender_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_room_id_fkey"
+            columns: ["room_id"]
+            isOneToOne: false
+            referencedRelation: "chat_rooms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      post_comments: {
+        Row: {
+          author_id: string
+          content: string
+          created_at: string
+          id: string
+          post_id: string
+        }
+        Insert: {
+          author_id: string
+          content: string
+          created_at?: string
+          id?: string
+          post_id: string
+        }
+        Update: {
+          author_id?: string
+          content?: string
+          created_at?: string
+          id?: string
+          post_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "post_comments_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      post_likes: {
+        Row: {
+          created_at: string
+          post_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          post_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          post_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "post_likes_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      posts: {
+        Row: {
+          author_id: string
+          content: string
+          created_at: string
+          id: string
+          image_url: string | null
+          tags: string[] | null
+          updated_at: string
+        }
+        Insert: {
+          author_id: string
+          content: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          tags?: string[] | null
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string
+          content?: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          tags?: string[] | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           account_type: Database["public"]["Enums"]["account_type"]
@@ -83,6 +334,32 @@ export type Database = {
         }
         Relationships: []
       }
+      room_members: {
+        Row: {
+          joined_at: string
+          room_id: string
+          user_id: string
+        }
+        Insert: {
+          joined_at?: string
+          room_id: string
+          user_id: string
+        }
+        Update: {
+          joined_at?: string
+          room_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "room_members_room_id_fkey"
+            columns: ["room_id"]
+            isOneToOne: false
+            referencedRelation: "chat_rooms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -116,6 +393,10 @@ export type Database = {
         }
         Returns: boolean
       }
+      is_room_member: {
+        Args: { _room_id: string; _user_id: string }
+        Returns: boolean
+      }
       transition_graduates_to_alumni: {
         Args: never
         Returns: {
@@ -126,6 +407,15 @@ export type Database = {
     Enums: {
       account_type: "personal" | "college_student" | "alumni"
       app_role: "admin" | "moderator" | "user"
+      connection_status: "pending" | "accepted" | "declined"
+      event_category:
+        | "hackathon"
+        | "workshop"
+        | "fest"
+        | "meetup"
+        | "webinar"
+        | "other"
+      room_type: "dm" | "group"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -255,6 +545,16 @@ export const Constants = {
     Enums: {
       account_type: ["personal", "college_student", "alumni"],
       app_role: ["admin", "moderator", "user"],
+      connection_status: ["pending", "accepted", "declined"],
+      event_category: [
+        "hackathon",
+        "workshop",
+        "fest",
+        "meetup",
+        "webinar",
+        "other",
+      ],
+      room_type: ["dm", "group"],
     },
   },
 } as const

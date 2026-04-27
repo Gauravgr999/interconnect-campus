@@ -9,8 +9,10 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && !user) navigate("/auth?mode=signin", { replace: true });
-    if (!loading && profile && !profile.onboarding_completed) navigate("/onboarding", { replace: true });
+    if (loading) return;
+    if (!user) navigate("/auth?mode=signin", { replace: true });
+    else if (profile && !profile.onboarding_completed) navigate("/onboarding", { replace: true });
+    else if (profile) navigate("/app/feed", { replace: true });
   }, [user, profile, loading, navigate]);
 
   if (loading || !profile) return <main className="min-h-screen grid place-items-center text-muted-foreground">Loading…</main>;
