@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const CTA = () => (
   <section className="py-24 px-4">
@@ -14,11 +15,13 @@ export const CTA = () => (
           Join thousands of students already building their future on InterConnect Campus. Free forever for students.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <Button variant="hero" size="xl" className="group">
-            Create your profile
-            <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+          <Button variant="hero" size="xl" className="group" asChild>
+            <Link to="/auth">
+              Create your profile
+              <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </Button>
-          <Button variant="glass" size="xl">Verify your college</Button>
+          <Button variant="glass" size="xl" asChild><Link to="/auth?mode=signin">Sign in</Link></Button>
         </div>
       </div>
     </div>
