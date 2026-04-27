@@ -18,6 +18,7 @@ const collegeSchema = z.object({
   department: z.string().trim().min(2, "Department required").max(100),
   degree: z.string().trim().min(2, "Degree required").max(100),
   graduation_year: z.coerce.number().int().min(2000).max(2100),
+  graduation_date: z.string().optional().or(z.literal("")),
   student_id: z.string().trim().max(50).optional(),
   bio: z.string().trim().max(500).optional(),
 });
@@ -49,6 +50,7 @@ const Onboarding = () => {
         department: profile.department || "",
         degree: profile.degree || "",
         graduation_year: profile.graduation_year?.toString() || "",
+        graduation_date: profile.graduation_date || "",
         student_id: profile.student_id || "",
         current_position: profile.current_position || "",
         company: profile.company || "",
@@ -76,6 +78,7 @@ const Onboarding = () => {
     setSaving(true);
     const data: any = { ...parsed.data, onboarding_completed: true };
     if (data.college_email === "") delete data.college_email;
+    if (data.graduation_date === "" || data.graduation_date === undefined) data.graduation_date = null;
     const { error } = await supabase.from("profiles").update(data).eq("id", user!.id);
     setSaving(false);
     if (error) { toast.error(error.message); return; }
@@ -135,6 +138,9 @@ const Onboarding = () => {
                   <Input value={form.student_id || ""} onChange={e => update("student_id", e.target.value)} />
                 </Field>
               </div>
+              <Field label="Exact graduation date" hint="Optional · auto-switches you to alumni on this date">
+                <Input type="date" value={form.graduation_date || ""} onChange={e => update("graduation_date", e.target.value)} />
+              </Field>
             </>
           ) : (
             <>
