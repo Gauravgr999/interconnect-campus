@@ -9,6 +9,16 @@ import NotFound from "./pages/NotFound.tsx";
 import Auth from "./pages/auth/Auth.tsx";
 import Onboarding from "./pages/auth/Onboarding.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
+import Feed from "./pages/app/Feed.tsx";
+import Network from "./pages/app/Network.tsx";
+import Events from "./pages/app/Events.tsx";
+import Chat from "./pages/app/Chat.tsx";
+import ChatRoom from "./pages/app/ChatRoom.tsx";
+import Profile from "./pages/app/Profile.tsx";
+import AIHub from "./pages/app/ai/AIHub.tsx";
+import Assistant from "./pages/app/ai/Assistant.tsx";
+import Resume from "./pages/app/ai/Resume.tsx";
+import Notes from "./pages/app/ai/Notes.tsx";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +34,17 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/onboarding" element={<Onboarding />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/app" element={<Feed />} />
+            <Route path="/app/feed" element={<Feed />} />
+            <Route path="/app/network" element={<Network />} />
+            <Route path="/app/events" element={<Events />} />
+            <Route path="/app/chat" element={<Chat />} />
+            <Route path="/app/chat/:roomId" element={<ChatRoom />} />
+            <Route path="/app/profile" element={<Profile />} />
+            <Route path="/app/ai" element={<AIHub />} />
+            <Route path="/app/ai/assistant" element={<Assistant />} />
+            <Route path="/app/ai/resume" element={<Resume />} />
+            <Route path="/app/ai/notes" element={<Notes />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
