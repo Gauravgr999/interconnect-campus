@@ -6,7 +6,7 @@ export async function streamAI({
   messages, tool = "assistant", onDelta, onDone, onError,
 }: {
   messages: AIMsg[];
-  tool?: "assistant" | "resume" | "notes";
+  tool?: "assistant" | "resume" | "notes" | "interview" | "pdf" | "ideas" | "career" | "roadmap" | "planner" | "research";
   onDelta: (chunk: string) => void;
   onDone: () => void;
   onError?: (msg: string) => void;

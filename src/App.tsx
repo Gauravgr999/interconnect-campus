@@ -19,6 +19,13 @@ import AIHub from "./pages/app/ai/AIHub.tsx";
 import Assistant from "./pages/app/ai/Assistant.tsx";
 import Resume from "./pages/app/ai/Resume.tsx";
 import Notes from "./pages/app/ai/Notes.tsx";
+import Interview from "./pages/app/ai/Interview.tsx";
+import PDFSummarizer from "./pages/app/ai/PDFSummarizer.tsx";
+import ProjectIdeas from "./pages/app/ai/ProjectIdeas.tsx";
+import Career from "./pages/app/ai/Career.tsx";
+import Roadmap from "./pages/app/ai/Roadmap.tsx";
+import Planner from "./pages/app/ai/Planner.tsx";
+import Research from "./pages/app/ai/Research.tsx";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +52,13 @@ const App = () => (
             <Route path="/app/ai/assistant" element={<Assistant />} />
             <Route path="/app/ai/resume" element={<Resume />} />
             <Route path="/app/ai/notes" element={<Notes />} />
+            <Route path="/app/ai/interview" element={<Interview />} />
+            <Route path="/app/ai/pdf" element={<PDFSummarizer />} />
+            <Route path="/app/ai/ideas" element={<ProjectIdeas />} />
+            <Route path="/app/ai/career" element={<Career />} />
+            <Route path="/app/ai/roadmap" element={<Roadmap />} />
+            <Route path="/app/ai/planner" element={<Planner />} />
+            <Route path="/app/ai/research" element={<Research />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

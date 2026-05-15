@@ -9,7 +9,7 @@ import { streamAI, AIMsg } from "@/lib/aiStream";
 import { toast } from "sonner";
 
 type Props = {
-  tool: "assistant" | "resume" | "notes";
+  tool: "assistant" | "resume" | "notes" | "interview" | "pdf" | "ideas" | "career" | "roadmap" | "planner" | "research";
   title: string;
   subtitle: string;
   placeholder: string;
