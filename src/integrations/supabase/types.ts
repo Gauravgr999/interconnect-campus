@@ -383,7 +383,57 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      public_profiles: {
+        Row: {
+          account_type: Database["public"]["Enums"]["account_type"] | null
+          avatar_url: string | null
+          bio: string | null
+          college_name: string | null
+          company: string | null
+          created_at: string | null
+          current_position: string | null
+          degree: string | null
+          department: string | null
+          full_name: string | null
+          headline: string | null
+          id: string | null
+          is_verified: boolean | null
+          location: string | null
+        }
+        Insert: {
+          account_type?: Database["public"]["Enums"]["account_type"] | null
+          avatar_url?: string | null
+          bio?: string | null
+          college_name?: string | null
+          company?: string | null
+          created_at?: string | null
+          current_position?: string | null
+          degree?: string | null
+          department?: string | null
+          full_name?: string | null
+          headline?: string | null
+          id?: string | null
+          is_verified?: boolean | null
+          location?: string | null
+        }
+        Update: {
+          account_type?: Database["public"]["Enums"]["account_type"] | null
+          avatar_url?: string | null
+          bio?: string | null
+          college_name?: string | null
+          company?: string | null
+          created_at?: string | null
+          current_position?: string | null
+          degree?: string | null
+          department?: string | null
+          full_name?: string | null
+          headline?: string | null
+          id?: string | null
+          is_verified?: boolean | null
+          location?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       has_role: {
